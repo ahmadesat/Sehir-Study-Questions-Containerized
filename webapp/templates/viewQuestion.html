@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<body>
+<div>
+    <h1>Full Question: </h1>
+
+    <h5>Ratings : {{ rating }}/5</h5>
+</div>
+<form method="post" autocomplete="off" id="answerForm" style="position:relative">
+    <br>
+    <div class=container style="background-color: white">
+        <p style="text-align:left; white-space: pre-wrap"> {{ desc }}</p>
+
+    </div>
+    <br>
+    <div class="msg" style="background-color: red; color:white;font-size:x-large">{{ errorMsg }}</div>
+
+    <br>
+    <label>Rate It (1-5) : </label>
+    <br>
+    <input type="number" name="rateToGive" min="1" max="5" value="1">
+    <br>
+    <input onclick="return confirm('Are you sure you want to Rate it like this?')"
+           style="border-width: 0;margin-top:1em; padding:1em; padding-right: 2em;padding-left:2em; border-radius: 15px"
+           type="submit" value="Rate">
+</form>
+</div>
+</body>
+
+
+{% endblock %}

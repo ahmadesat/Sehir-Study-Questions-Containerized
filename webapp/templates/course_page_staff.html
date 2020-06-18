@@ -1,0 +1,70 @@
+{% extends "main.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='contentstyle.css') }}">
+
+<h1>{{ coursename }}</h1>
+<h2> I AM THE STAFF MEMBER</h2>
+
+<div class="content">
+    <h2>Study Questions:
+        <form method="post" autocomplete="off">
+            <input style="border-width: 0;margin-top:1em; padding: 1em; border-radius: 15px" name="btn" type="submit"
+                   value="Post A Question">
+        </form>
+    </h2>
+    <table>
+        <tr>
+            <td width="450" align="center"
+                style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom:solid;border-width:1px;border-color:black;">
+                Description<br> <a style="font-weight: normal;font-size: small">(Click For Full Question)</a></td>
+            <td width="150" align="center"
+                style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom:solid ;border-width:1px;border-color:black;">
+                Difficulty (1-3)
+            </td>
+            <td width="150" align="center"
+                style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom:solid ;border-width:1px;border-color:black;">
+                Value (1-5)
+            </td>
+            <td width="153" align="center"
+                style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom:solid ;border-width:1px;border-color:black;">
+                Time Posted
+            </td>
+            <td width="160" align="center"
+                style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom:solid ;border-width:1px;border-color:black;">
+                Answers
+            </td>
+
+
+        </tr>
+    </table>
+    <script>
+        var trueurl = window.location.href
+        var descs = {{desc | tojson}}
+        var difficulties = {{difficulty | tojson}}
+        var p_values = {{p_value | tojson}}
+        var q_ids = {{q_id | tojson}}
+        var currentDates = {{dates | tojson}}
+
+        document.write('<table style="margin-bottom: 1em" border="0" cellspacing="0">');
+
+        for (var i = 0; i < descs.length; i++) {
+            document.write('<tr height="50">');
+            document.write('<td width="450" align="center" style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom- style:solid;border-width:1px;border-color:black;white-space: pre-wrap; text-align:left; font-size:15px"> <a href="' + trueurl + '/' + q_ids[i] + '">' + descs[i].substring(0, 70) + '...' + '</a></td>');
+            document.write('<td width="150" align="center" style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom- style:solid;border-width:1px;border-color:black;"> ' + difficulties[i] + '</td>');
+            document.write('<td width="150" align="center" style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom- style:solid;border-width:1px;border-color:black;"> ' + p_values[i] + '</td>');
+            document.write('<td width="145" align="center" style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom- style:solid;border-width:1px;border-color:black;"> ' + currentDates[i] + '</td>');
+
+            document.write('<td width="160" align="center" style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom- style:solid;border-width:1px;border-color:black;">\n' +
+                '</form>' + '<a href="' + trueurl + '/' + q_ids[i] + '/answers">View Answers</a>' +
+                '</td>');
+
+            document.write('</tr>');
+        }
+
+        document.write('</table>');
+
+    </script>
+
+</div>
+{% endblock %}

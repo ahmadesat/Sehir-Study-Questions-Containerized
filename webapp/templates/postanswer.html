@@ -1,0 +1,32 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<body>
+<div>
+    <h1>Post An Answer</h1>
+</div>
+<div>
+    <form method="post" autocomplete="off" id="answerForm" style="position:relative">
+        <label>Answer (Max. 1000 characters)</label>
+
+        <br>
+
+        <textarea style="position:relative; left:0" name="description" rows="10" cols="70" placeholder="Your Answer..."
+                  id="description" required></textarea>
+        <br>
+        <div class="msg" style="background-color: red; color:white;font-size:x-large">{{ errorMsg }}</div>
+
+        <br>
+
+        <p style="position:relative; color:red">Please make sure this is your final answer, you will not be able to edit
+            it or post another answer!</p>
+        <input onclick="return confirm('Are you sure you want to continue?')"
+               style="border-width: 0;margin-top:1em; padding:1em; padding-right: 2em;padding-left:2em; border-radius: 15px"
+               type="submit" value="Post">
+    </form>
+</div>
+</body>
+
+
+{% endblock %}

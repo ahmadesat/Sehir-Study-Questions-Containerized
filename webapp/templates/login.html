@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+
+{% block name %}
+{% endblock %}
+
+{% block navbar %}
+<a class="nav-item nav-link" href="/login">Login</a>
+<a class="nav-item nav-link" href="/register">Register</a>
+{% endblock %}
+
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='loginStyle.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+</head>
+<body>
+<div class="login">
+    <h1>Login</h1>
+    <form action="/login" method="post">
+
+        <label for="user_email">
+            <i class="fas fa-envelope"></i>
+        </label>
+        <input type="email" name="user_email" placeholder="Sehir Email" id="user_email" required>
+
+        <label for="password">
+            <i class="fas fa-lock"></i>
+        </label>
+        <input type="password" name="user_password" placeholder="Password" id="password" required>
+        <div class="msg" style="color: red">{{ msg }}</div>
+        <input type="submit" value="Login">
+
+    </form>
+</div>
+</body>
+
+{% endblock %}

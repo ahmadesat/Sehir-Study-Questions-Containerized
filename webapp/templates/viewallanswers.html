@@ -1,0 +1,65 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='contentstyle.css') }}">
+
+<h1>{{ coursename }}</h1>
+
+<div class="content">
+    {% block crap %}
+    <h2>Question Answers:
+    </h2>
+    {% endblock %}
+    <table>
+        <tr>
+            <td width="400" align="center"
+                style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom:solid;border-width:1px;border-color:black;">
+                Answer
+            </td>
+            <td width="150" align="center"
+                style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom:solid ;border-width:1px;border-color:black;">
+                Posted_by
+            </td>
+            <td width="200" align="center"
+                style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom:solid ;border-width:1px;border-color:black; font-size:15px;">
+                Status <br> (Correct or Wrong) <br> (-1 = NOT GRADED)
+            </td>
+            <td width="153" align="center"
+                style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom:solid ;border-width:1px;border-color:black;">
+                Time Posted
+            </td>
+            <td width="160" align="center"
+                style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom:solid ;border-width:1px;border-color:black;">
+                Full Answer
+            </td>
+
+
+        </tr>
+    </table>
+    <script>
+        var trueurl = window.location.href
+
+        var descs = {{desc | tojson}}
+        var posted_bys = {{posted_by | tojson}}
+        var statuses = {{correctOrNot | tojson}}
+        var currentDates = {{dates | tojson}}
+
+        document.write('<table style="margin-bottom: 1em" border="0" cellspacing="0">');
+
+        for (var i = 0; i < descs.length; i++) {
+            document.write('<tr height="50">');
+            document.write('<td width="400" align="center" style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom- style:solid;border-width:1px;border-color:black;white-space: pre-wrap; text-align:left ;font-size:15px; font-weight: normal"> ' + descs[i].substring(0, 70) + '...' + '</td>');
+            document.write('<td width="150" align="center" style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom- style:solid;border-width:1px;border-color:black;"> ' + posted_bys[i] + '</td>');
+            document.write('<td width="200" align="center" style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom- style:solid;border-width:1px;border-color:black;"> ' + statuses[i] + '</td>');
+            document.write('<td width="145" align="center" style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom- style:solid;border-width:1px;border-color:black;"> ' + currentDates[i] + '</td>');
+
+            document.write('<td width="160" align="center" style="border- top-style:none;border-right-style:none;border-left-style:none;border-bottom- style:solid;border-width:1px;border-color:black;">  <a href="' + trueurl + '/' + posted_bys[i] + ' ">View</a></td>');
+
+
+            document.write('</tr>');
+        }
+    </script>
+
+</div>
+{% endblock %}

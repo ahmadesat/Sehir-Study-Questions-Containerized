@@ -1,0 +1,34 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<body>
+<div>
+    <h1>Review This Answer</h1>
+</div>
+<div>
+    <form method="post" autocomplete="off" id="answerForm" style="position:relative">
+        <br>
+        <div class=container style="background-color: white">
+            <p style="text-align:left; white-space: pre-wrap"> {{ desc }}</p>
+
+        </div>
+        <p> Answer By : {{ posted_by }}</p>
+        <br>
+        <div class="msg" style="background-color: red; color:white;font-size:x-large">{{ errorMsg }}</div>
+        <br>
+        <p style="position:relative; color:red">-1 = Not Graded <br> 0 = Wrong <br> 1 = Correct !</p>
+        <br>
+        <label>Grade : </label>
+        <br>
+        <input type="number" name="gradeToGive" min="-1" max="1" value="-1">
+        <br>
+        <input onclick="return confirm('Once you continue, you can not change the grade')"
+               style="border-width: 0;margin-top:1em; padding:1em; padding-right: 2em;padding-left:2em; border-radius: 15px"
+               type="submit" value="Grade">
+    </form>
+</div>
+</body>
+
+
+{% endblock %}

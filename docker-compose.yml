@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mysql:
+    image: ahmadesat/sehirstudyquestions-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'studyquestions'
+      # You can use whatever password you like
+      MYSQL_ROOT_PASSWORD: 'mysqlsehir'
+      MYSQL_PASSWORD: 'mysqlsehir'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+
+  web:
+     image: ahmadesat/sehirstudyquestions-flaskapp
+     restart: always
+     depends_on:
+       - mysql
+     command: bash -c "/usr/local/bin/wait.sh"
+     ports:
+       - '5000:5000'
+     volumes:
+       - ./wait.sh:/usr/local/bin/wait.sh
+  
