@@ -3,7 +3,7 @@ A Containerized version of Sehir Study Questions website
 
 ## How To Use :
 
-1. Download all the files and extract them in a directory
+1. Download "docker-compose.yml" and extract it in a directory
 2. Open that directory in your **terminal**
 3. Run the following command in the terminal :
 

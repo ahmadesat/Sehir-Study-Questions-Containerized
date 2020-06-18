@@ -1,7 +1,7 @@
 version: '3'
 services:
   mysql:
-    image: ahmadesat/sehirstudyquestions-mysql
+    image: mysql:8.0
     restart: always
     environment:
       MYSQL_DATABASE: 'studyquestions'
