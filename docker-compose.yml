@@ -19,7 +19,7 @@ services:
       - ./mysql-data:/var/lib/mysql
 
   web:
-     image: ahmadesat/sehirstudyquestions-flaskapp
+     image: ahmadesat/sehirstudyquestions
      restart: always
      depends_on:
        - mysql
